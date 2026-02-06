@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #020204;
+    color: #ffffff;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .text-toxic {
+    color: #BFFF00;
+  }
+  .bg-toxic {
+    background-color: #BFFF00;
+  }
+  .border-toxic {
+    border-color: #BFFF00;
+  }
+  .shadow-toxic {
+    box-shadow: 0 0 20px rgba(191, 255, 0, 0.5);
+  }
+  .text-magenta {
+    color: #FF00FF;
+  }
+  .text-cyan {
+    color: #00FFFF;
+  }
+
+  .font-display {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(191, 255, 0, 0.2);
+  }
+
+  .glitch-text {
+    position: relative;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch-text::before {
+    animation: glitch-1 0.3s infinite linear alternate-reverse;
+    color: #FF00FF;
+    z-index: -1;
+  }
+
+  .glitch-text::after {
+    animation: glitch-2 0.3s infinite linear alternate-reverse;
+    color: #00FFFF;
+    z-index: -2;
+  }
+
+  @keyframes glitch-1 {
+    0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 0); }
+    20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 0); }
+    40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 0); }
+    60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
+    80% { clip-path: inset(10% 0 60% 0); transform: translate(-2px, 0); }
+    100% { clip-path: inset(30% 0 30% 0); transform: translate(2px, 0); }
+  }
+
+  @keyframes glitch-2 {
+    0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, 0); }
+    20% { clip-path: inset(30% 0 30% 0); transform: translate(-2px, 0); }
+    40% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
+    60% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 0); }
+    80% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 0); }
+    100% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 0); }
+  }
+
+  .cube-face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(191, 255, 0, 0.3);
+    background: linear-gradient(135deg, rgba(191, 255, 0, 0.1), rgba(255, 0, 255, 0.05));
+    backface-visibility: visible;
+  }
+
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    animation: grain 0.5s steps(1) infinite;
+  }
+
+  .scanline-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .scanline-overlay::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(191, 255, 0, 0.1), transparent);
+    animation: scanline 8s linear infinite;
+  }
+
+  .broken-icon {
+    position: relative;
+    display: inline-block;
+  }
+
+  .broken-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 90% 30%, 90% 70%, 100% 70%, 100% 100%, 0 100%, 0 70%, 10% 70%, 10% 30%, 0 30%);
+  }
+
+  .neon-border {
+    box-shadow: 0 0 5px rgba(191, 255, 0, 0.5),
+                0 0 10px rgba(191, 255, 0, 0.3),
+                0 0 20px rgba(191, 255, 0, 0.2),
+                inset 0 0 5px rgba(191, 255, 0, 0.1);
+  }
+
+  .neon-border-magenta {
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.5),
+                0 0 10px rgba(255, 0, 255, 0.3),
+                0 0 20px rgba(255, 0, 255, 0.2);
+  }
+
+  .neon-border-cyan {
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.5),
+                0 0 10px rgba(0, 255, 255, 0.3),
+                0 0 20px rgba(0, 255, 255, 0.2);
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-visible {
+    backface-visibility: visible;
+  }
+}
